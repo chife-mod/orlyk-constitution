@@ -386,7 +386,7 @@ a.ref-card:hover { border-color: rgba(159,186,205,0.3); background: rgba(255,255
    Flags: tbc = requires clarification · p2 = phase 2 (— in START col) ·
           sep = separate work block. Hours are in HOURS (min/max).
    ─────────────────────────────────────────────────────────────── */
-const CONFIG = { rate: 30, commentsMin: 0.10, commentsMax: 0.10, mgmtMin: 0.10, mgmtMax: 0.10, hoursPerDay: 8 };
+const CONFIG = { rate: 30, commentsMin: 0.10, commentsMax: 0.10, mgmtMin: 0.10, mgmtMax: 0.10, hoursPerDay: 5.3 };
 
 const SITEMAP = [
   { name: "Лендинг", sections: [
@@ -528,7 +528,7 @@ const subMin = grandMin * CONFIG.rate, subMax = grandMax * CONFIG.rate;
 const commMin = subMin * CONFIG.commentsMin, commMax = subMax * CONFIG.commentsMax;
 const mgmtMin = subMin * CONFIG.mgmtMin,     mgmtMax = subMax * CONFIG.mgmtMax;
 const totMin = subMin + commMin + mgmtMin,   totMax = subMax + commMax + mgmtMax;
-// working days @ 6 delivered hours/day
+// working days @ ~5.3 delivered hours/day
 const daysMin = Math.ceil(grandMin / CONFIG.hoursPerDay);
 const daysMax = Math.ceil(grandMax / CONFIG.hoursPerDay);
 
