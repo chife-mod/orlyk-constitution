@@ -269,22 +269,7 @@ body {
   <!-- ── Two tiles: Brief + Sitemap & Estimate ─────────────────── -->
   <div class="launcher__grid">
 
-    <!-- Tile 1 — Brief (opens Google Doc) -->
-    <a class="tile-card" href="#" target="_blank" rel="noopener" data-external>
-      <span class="tile-card__icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M14 3v4a1 1 0 0 0 1 1h4M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8M14 3l5 5M8 13h8M8 17h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </span>
-      <span class="tile-card__tag">Source</span>
-      <h2 class="tile-card__title">Brief</h2>
-      <p class="tile-card__desc">
-        Original client brief — the single source of truth for scope. Opens the source document.
-      </p>
-      <span class="tile-card__cta">Open brief</span>
-    </a>
-
-    <!-- Tile 2 — Sitemap & Estimate (combined) -->
+    <!-- Tile 1 — Sitemap & Estimate (combined) -->
     <a class="tile-card" href="sitemap/">
       <span class="tile-card__icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -301,6 +286,21 @@ body {
       </p>
       <span class="tile-card__cta">Open sitemap</span>
     </a>
+
+    <!-- Tile 2 — Brief (disabled — no source document yet) -->
+    <div class="tile-card" data-status="planned" aria-disabled="true">
+      <span class="tile-card__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14 3v4a1 1 0 0 0 1 1h4M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8M14 3l5 5M8 13h8M8 17h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span class="tile-card__tag">Source</span>
+      <h2 class="tile-card__title">Brief</h2>
+      <p class="tile-card__desc">
+        Original client brief — to be attached.
+      </p>
+      <span class="tile-card__cta">Pending</span>
+    </div>
 
   </div>
 
