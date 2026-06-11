@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26">
-<style>.c{stroke:#111}.t{fill:#111}@media (prefers-color-scheme: dark){.c{stroke:#fff}.t{fill:#fff}}</style>
+<style>.c{stroke:#111}.g{fill:#111}@media (prefers-color-scheme: dark){.c{stroke:#fff}.g{fill:#fff}}</style>
 <rect class="c" x="1" y="1" width="24" height="24" stroke-width="2" fill="none"/>
-<text class="t" x="13" y="13" text-anchor="middle" dominant-baseline="central" font-family="Montserrat, system-ui, sans-serif" font-weight="700" font-size="15">{{INITIAL}}</text>
+<path class="g" transform="translate(13.0 13.0) scale(0.01857 -0.01857) translate(-403.00 -350.00)" d="M561 0 324 341 429 406 708 0ZM98 0V700H226V0ZM187 295V407H423V295ZM441 335 322 351 561 700H699Z"/>
 </svg>

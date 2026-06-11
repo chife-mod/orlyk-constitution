@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>Конституція Пилипа Орлика — Sitemap &amp; Estimate</title>
+<title>Конституція Пилипа Орлика — Структура та кошторис</title>
 
 <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
 
@@ -82,6 +82,33 @@ body {
 .estimate__title {
   font-size: 13px; font-weight: 500; text-transform: uppercase;
   letter-spacing: 0.14em; color: rgba(255, 255, 255, 0.45); margin-bottom: 20px;
+}
+
+/* ─── Version tabs (V1 / V2) — segmented control ─────────────── */
+.vtabs {
+  display: inline-flex; gap: 6px; margin-top: 28px; padding: 5px;
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 14px;
+}
+.vtab {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 3px;
+  min-width: 210px; padding: 12px 18px; text-align: left;
+  background: transparent; border: 1px solid transparent; border-radius: 10px;
+  color: inherit; cursor: pointer; font-family: inherit;
+  transition: background 180ms ease, border-color 180ms ease;
+}
+.vtab:hover { background: rgba(255,255,255,0.04); }
+.vtab.is-active { background: rgba(75,108,255,0.14); border-color: rgba(75,108,255,0.4); }
+.vtab__k { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brand-blue-light); }
+.vtab.is-active .vtab__k { color: #c3cdff; }
+.vtab__l { font-size: 15px; font-weight: 600; letter-spacing: -0.01em; }
+.vtab__s { font-size: 11.5px; color: rgba(255,255,255,0.5); font-variant-numeric: tabular-nums; }
+.vtab.is-active .vtab__s { color: rgba(195,205,255,0.85); }
+@media (max-width: 560px) { .vtabs { display: flex; width: 100%; } .vtab { flex: 1; min-width: 0; } }
+
+.vnote {
+  margin-top: 16px; font-size: 13px; line-height: 1.55;
+  color: rgba(255,255,255,0.6); max-width: 760px;
 }
 
 /* Stages strip */
@@ -176,12 +203,15 @@ body {
 .node.is-system .node__head { background: rgba(75,108,255,0.08); }
 .node.is-work .node__head { background: rgba(168,85,247,0.09); }
 
-.node__headtop { display: flex; align-items: center; gap: 9px; }
+.node__headtop { display: flex; align-items: center; gap: 9px; min-height: 26px; }
 
 .node__num { flex-shrink: 0; width: 26px; height: 26px; display: grid; place-items: center; background: rgba(159, 186, 205, 0.12); border: 1px solid rgba(159, 186, 205, 0.24); border-radius: 7px; font-size: 12px; font-weight: 700; color: var(--brand-blue-light); font-variant-numeric: tabular-nums; }
 
 .node__name { flex: 1; min-width: 0; font-size: 14.5px; font-weight: 600; letter-spacing: -0.01em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.node__sub { flex-shrink: 0; font-size: 12px; font-weight: 700; color: var(--brand-blue-light); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.node__sub-wrap { flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 3px; }
+.node__sub { font-size: 12px; font-weight: 700; color: var(--brand-blue-light); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.node__price { font-size: 11px; font-weight: 600; color: #c3cdff; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.node__price--excl { color: rgba(255,206,138,0.85); }
 
 /* badge row — sits UNDER the page name so long names aren't clipped */
 .node__badges { display: flex; flex-wrap: wrap; gap: 6px; }
@@ -191,18 +221,25 @@ body {
 .node__badge--system  { color: #c3cdff; background: rgba(75,108,255,0.16); border: 1px solid rgba(75,108,255,0.4); }
 .node__badge--work    { color: #e0b3ff; background: rgba(168,85,247,0.16); border: 1px solid rgba(168,85,247,0.42); }
 .node__badge--p2      { color: #c3cdff; background: rgba(75,108,255,0.16); border: 1px solid rgba(75,108,255,0.4); }
+.node__badge--tag     { color: var(--brand-blue-light); background: rgba(159,186,205,0.12); border: 1px solid rgba(159,186,205,0.28); }
 .node__badge--excl    { color: #ffce8a; background: rgba(255,173,51,0.12); border: 1px solid rgba(255,173,51,0.38); }
 .node.is-excluded { opacity: 0.72; border-style: dashed; border-color: rgba(255,173,51,0.35); }
 .node__sub--excl { color: rgba(255,206,138,0.9) !important; }
 
 .node__sections { display: flex; flex-direction: column; gap: 8px; padding: 12px; }
 
+/* caption — "що саме передаємо" над плитками всередині вузла */
+.node__caption { padding: 10px 12px; font-size: 11px; line-height: 1.45; color: rgba(255,255,255,0.58); border-bottom: 1px dashed rgba(255,255,255,0.12); }
+.node__caption strong { color: rgba(255,255,255,0.82); font-weight: 600; }
+.node.is-work .node__caption { color: rgba(224,179,255,0.92); background: rgba(168,85,247,0.05); border-bottom-color: rgba(168,85,247,0.18); }
+.node.is-work .node__caption strong { color: #e9ccff; }
+
 /* ─── Section tile ───────────────────────────────────────────── */
 
 .tile { padding: 11px 12px; background: rgba(255, 255, 255, 0.035); border: 1px solid rgba(255, 255, 255, 0.07); border-radius: 9px; transition: border-color 180ms ease, background 180ms ease; }
 .tile:hover { border-color: rgba(159,186,205,0.3); background: rgba(255,255,255,0.06); }
 .tile__row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-.tile__name { font-size: 13.5px; font-weight: 600; letter-spacing: -0.005em; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tile__name { font-size: 13.5px; font-weight: 600; letter-spacing: -0.005em; min-width: 0; line-height: 1.3; overflow-wrap: anywhere; }
 .tile__hours { flex-shrink: 0; display: inline-flex; align-items: baseline; gap: 3px; padding: 3px 8px; background: rgba(159, 186, 205, 0.12); border: 1px solid rgba(159, 186, 205, 0.22); border-radius: 999px; font-size: 11.5px; font-weight: 700; color: var(--brand-blue-light); font-variant-numeric: tabular-nums; }
 .tile__hours small { font-size: 9px; font-weight: 500; opacity: 0.7; }
 .tile__desc { font-size: 11.5px; line-height: 1.4; color: rgba(255, 255, 255, 0.48); margin-top: 6px; }
@@ -222,10 +259,54 @@ body {
 .breakdown__table th, .breakdown__table td { text-align: right; padding: 12px 16px; font-size: 14px; border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
 .breakdown__table th:first-child, .breakdown__table td:first-child { text-align: left; color: rgba(255,255,255,0.7); }
 .breakdown__table thead th { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255, 255, 255, 0.4); }
+.breakdown__table tr.row-sub td { font-weight: 600; border-top: 1px solid rgba(255, 255, 255, 0.14); }
+.breakdown__table tr.row-sub td:first-child { color: rgba(255,255,255,0.85); }
+.breakdown__table tr.row-sub td:not(:first-child) { font-size: 20px; font-weight: 700; }
 .breakdown__table tr.is-total td { font-weight: 700; font-size: 16px; border-bottom: none; border-top: 2px solid rgba(255, 255, 255, 0.16); padding-top: 16px; }
 .breakdown__table tr.is-total td:not(:first-child) { color: #c3cdff; font-size: 28px; white-space: nowrap; }
 .breakdown__table tr.is-total .mm { font-size: 11px; font-weight: 500; color: #c3cdff; opacity: 0.7; margin-right: 8px; vertical-align: baseline; }
 .breakdown__note { margin-top: 16px; font-size: 12px; color: rgba(255, 255, 255, 0.4); line-height: 1.5; }
+
+/* ФОП / курс НБУ / гривневий підсумок */
+.breakdown__table tr.rate-row td { border-bottom: none; padding-top: 14px; padding-bottom: 4px; font-size: 12.5px; color: rgba(255,255,255,0.45); }
+.breakdown__table tr.rate-row td:last-child { color: var(--brand-blue-light); font-weight: 600; font-variant-numeric: tabular-nums; }
+.breakdown__table tr.is-total--uah td { border-top: 1px solid rgba(255,255,255,0.12); }
+.breakdown__table tr.is-total--uah td:not(:first-child) { color: #ffd27a; }
+.breakdown__table tr.is-total--uah .mm { color: #ffd27a; }
+.stat--uah .stat__value { color: #ffd27a; }
+.stat--uah .stat__value small { color: #ffd27a; opacity: 0.8; }
+
+/* ─── Фінальна ціна (фікс) — version-scoped approved price ───── */
+.final {
+  display: grid; grid-template-columns: minmax(240px, auto) 1fr; gap: 20px 56px;
+  align-items: center;
+  margin-top: 28px; padding: 26px 28px;
+  background: linear-gradient(180deg, rgba(75,108,255,0.15) 0%, rgba(75,108,255,0.05) 100%);
+  border: 1px solid rgba(75,108,255,0.5);
+  border-radius: 16px;
+}
+.final__label {
+  display: block; font-size: 11px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.12em; color: #c3cdff; margin-bottom: 12px;
+}
+.final__price { font-size: 44px; font-weight: 700; letter-spacing: -0.02em; line-height: 1; font-variant-numeric: tabular-nums; }
+.final__uah { margin-top: 10px; font-size: 13px; color: #ffd27a; font-variant-numeric: tabular-nums; line-height: 1.5; }
+.final__terms { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.final__terms li {
+  position: relative; padding-left: 16px;
+  font-size: 12.5px; line-height: 1.45; color: rgba(255,255,255,0.65);
+}
+.final__terms li::before {
+  content: ""; position: absolute; left: 2px; top: 0.55em;
+  width: 4px; height: 4px; border-radius: 50%; background: var(--brand-blue-light);
+}
+.final__addon {
+  grid-column: 1 / -1;
+  padding-top: 14px; border-top: 1px dashed rgba(255,255,255,0.16);
+  font-size: 12.5px; line-height: 1.5; color: rgba(255,255,255,0.55);
+}
+.final__addon strong { color: #c3cdff; font-weight: 600; }
+@media (max-width: 700px) { .final { grid-template-columns: 1fr; } }
 .footer-pad { height: 120px; }
 
 /* References / About */
@@ -252,8 +333,8 @@ a.ref-card:hover { border-color: rgba(159,186,205,0.3); background: rgba(255,255
   window.PREVIEW_PROJECT_NAME = "Конституція Пилипа Орлика";
   window.PREVIEW_DEFAULT_VERSION = "sitemap";
   window.PREVIEW_VERSIONS = [
-    { id: "launcher", label: "Dashboard",          desc: "Estimation overview",     path: "../" },
-    { id: "sitemap",  label: "Sitemap & Estimate",  desc: "Pages, sections & hours", path: "" }
+    { id: "launcher", label: "Огляд",               desc: "Огляд проєкту",          path: "../" },
+    { id: "sitemap",  label: "Структура та кошторис", desc: "Блоки, години, ціна",  path: "" }
   ];
 </script>
 
@@ -266,24 +347,27 @@ a.ref-card:hover { border-color: rgba(159,186,205,0.3); background: rgba(255,255
 <div class="wrap">
   <header class="head">
     <div class="head__main">
-      <span class="eyebrow">Most of Design · Preliminary Estimation</span>
-      <h1 class="page-title">Sitemap &amp; Estimate</h1>
+      <span class="eyebrow">Most of Design · Кошторис проєкту</span>
+      <h1 class="page-title">Структура та кошторис</h1>
     </div>
     <p class="lede">
-      Лендинг до 30-річчя Конституції України, mapped from the brief. Each page is a vertical column,
-      sections stack inside with hours on every tile, sub-pages and pop-ups branch downward.
+      Лендинг до 30-річчя Конституції України за матеріалами брифу. Кожен блок робіт — вертикальна
+      колонка, секції складені всередині, на кожній плитці — години та вартість.
     </p>
   </header>
 
+  <div class="vtabs" id="vtabs" role="tablist" aria-label="Версія кошторису"></div>
+  <p class="vnote" id="vnote"></p>
+
   <div class="legend">
-    <span><i class="b-tbc">TBC</i> requires clarification</span>
-    <span><i class="b-p2">P2</i> phase 2 (not in START)</span>
-    <span><i class="b-sep">SEP</i> separate work block</span>
+    <span><i class="b-tbc">TBC</i> потребує уточнення</span>
+    <span><i class="b-p2">P2</i> фаза 2 (не в старті)</span>
+    <span><i class="b-sep">SEP</i> окремий блок робіт</span>
   </div>
 
   <div class="board-hint">
     <svg viewBox="0 0 24 24" fill="none"><path d="M8 7 4 11l4 4M16 7l4 4-4 4M3 11h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    Scroll or drag to see all pages
+    Гортайте або тягніть, щоб побачити всі блоки
   </div>
 </div>
 
@@ -292,85 +376,75 @@ a.ref-card:hover { border-color: rgba(159,186,205,0.3); background: rgba(255,255
 
 <!-- ESTIMATE after — see the work before the price -->
 <div class="wrap estimate">
-  <h2 class="estimate__title">Estimate</h2>
+  <h2 class="estimate__title" id="estTitle">Кошторис</h2>
 
   <div class="rollup" id="rollup"></div>
 
   <table class="breakdown__table">
-    <thead><tr><th>Line</th><th>Min</th><th>Max</th></tr></thead>
+    <thead><tr><th>Позиція</th><th>Мін</th><th>Макс</th></tr></thead>
     <tbody id="breakdownBody"></tbody>
   </table>
+
+  <div class="final" id="finalBlock" hidden></div>
 </div>
 
 <!-- Stages -->
 <div class="wrap stages-wrap">
-  <h2 class="estimate__title">Stages</h2>
+  <h2 class="estimate__title">Етапи</h2>
   <div class="stages">
     <div class="stage-card">
-      <span class="stage-card__n">Stage 1 <span class="stage-card__pay">100% prepaid</span></span>
-      <div class="stage-card__t">Concept</div>
-      <div class="stage-card__d">Visual direction + a teaser of the key visual / animation. Paid 100% upfront before we start.</div>
+      <span class="stage-card__n">Етап 1 <span class="stage-card__pay">100% передоплата</span></span>
+      <div class="stage-card__t">Концепція</div>
+      <div class="stage-card__d">Візуальний напрям + Hero: ключовий візуал, тізер анімації. Старт робіт — після передоплати.</div>
     </div>
     <div class="stage-card">
-      <span class="stage-card__n">Stage 2 <span class="stage-card__pay">prepay → deliver</span></span>
-      <div class="stage-card__t">Design — Part 1</div>
-      <div class="stage-card__d">Home, WOW animation and the first batch of layouts (desktop → mobile). Prepaid, then delivered.</div>
+      <span class="stage-card__n">Етап 2 <span class="stage-card__pay">50% залишку наперед</span></span>
+      <div class="stage-card__t">Дизайн — десктоп</div>
+      <div class="stage-card__d">Усі секції лендингу в десктопній версії + анімації та інтерактив, включно з рідером документа.</div>
     </div>
     <div class="stage-card">
-      <span class="stage-card__n">Stage 3 <span class="stage-card__pay">prepay → deliver</span></span>
-      <div class="stage-card__t">Design — Part 2</div>
-      <div class="stage-card__d">Next batch of layouts + interactivity. Prepaid, then delivered.</div>
+      <span class="stage-card__n">Етап 3 <span class="stage-card__pay">у складі оплати Етапу 2</span></span>
+      <div class="stage-card__t">Адаптив</div>
+      <div class="stage-card__d">Планшет і мобільний: доведення всіх макетів, пріоритет мобільної версії.</div>
     </div>
     <div class="stage-card">
-      <span class="stage-card__n">Stage 4 <span class="stage-card__pay">prepay → deliver</span></span>
-      <div class="stage-card__t">Design — Part 3</div>
-      <div class="stage-card__d">Final batch of layouts + micro-animations. Prepaid, then delivered.</div>
-    </div>
-    <div class="stage-card">
-      <span class="stage-card__n">Stage 5 <span class="stage-card__pay">final payment</span></span>
-      <div class="stage-card__t">Acceptance</div>
-      <div class="stage-card__d">Review, sign-off and final payment.</div>
+      <span class="stage-card__n">Етап 4 <span class="stage-card__pay">фінальні 50% залишку</span></span>
+      <div class="stage-card__t">HTML/CSS</div>
+      <div class="stage-card__d">Верстка front-end з анімаціями та аннотаціями статей. Передача файлів і приймання.</div>
     </div>
   </div>
 </div>
 
-<!-- Preliminary disclaimer — very bottom of the page -->
-<div class="wrap">
-  <div class="notice notice--foot">
-    <svg viewBox="0 0 24 24" fill="none"><path d="M12 9v4m0 4h.01M10.3 3.86 1.82 18a2 2 0 0 0 1.7 3h16.96a2 2 0 0 0 1.7-3L13.7 3.86a2 2 0 0 0-3.42 0Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    <span><strong>Preliminary estimate</strong> — design + animation per section. The min–max range reflects the complexity of each block / section and is finalized once the full page &amp; block structure is approved. Working days are production time only — they don't include possible management, comments or rework. P2 items (phase 2) can be split into a second stage. <strong>Video generation is not included</strong> — third-party generation / render service fees may be billed separately, and the amount becomes clear after the concept.</span>
-  </div>
-</div>
 <!-- References / About — studio credibility closer (same for every offer) -->
 <div class="wrap refs">
-  <h2 class="estimate__title">References</h2>
+  <h2 class="estimate__title">Приклади робіт</h2>
   <p class="refs__about">
-    <strong>Most of Design — product designer, 25+ years of experience.</strong> Full-spectrum design &amp; visualization — from idea to implementation. 3D &amp; 2D animation, interaction design, pitch decks, brand development. Certified Autodesk specialist.
+    <strong>Most of Design — продуктовий дизайнер, 25+ років досвіду.</strong> Повний цикл дизайну та візуалізації — від ідеї до реалізації. 3D- та 2D-анімація, інтеракційний дизайн, презентації, розробка бренду. Сертифікований спеціаліст Autodesk.
   </p>
   <div class="refs__grid">
 
     <a class="ref-card" href="https://tabasco.com.ua/" target="_blank" rel="noopener">
       <div class="ref-card__head"><span class="ref-card__name">Tabasco</span><span class="ref-card__ext">↗</span></div>
-      <div class="ref-card__desc">Design &amp; turnkey build.</div>
-      <div class="ref-card__tags"><span>Design</span><span>Turnkey build</span></div>
+      <div class="ref-card__desc">Дизайн та розробка під ключ.</div>
+      <div class="ref-card__tags"><span>Дизайн</span><span>Розробка під ключ</span></div>
     </a>
 
     <a class="ref-card" href="https://adapwork.com/" target="_blank" rel="noopener">
       <div class="ref-card__head"><span class="ref-card__name">Adapwork</span><span class="ref-card__ext">↗</span></div>
-      <div class="ref-card__desc">Factory CAD → accurate 3D animation matched to real models. 3D render + post-production (not AI generation).</div>
-      <div class="ref-card__tags"><span>Product design</span><span>3D animation</span><span>Render + post</span></div>
+      <div class="ref-card__desc">Заводський CAD → точна 3D-анімація за реальними моделями. 3D-рендер + постпродакшн (не AI-генерація).</div>
+      <div class="ref-card__tags"><span>Продуктовий дизайн</span><span>3D-анімація</span><span>Рендер + пост</span></div>
     </a>
 
     <a class="ref-card" href="https://chife-mod.github.io/verifly-web/concept-2/" target="_blank" rel="noopener">
-      <div class="ref-card__head"><span class="ref-card__name">Verifly · Concept 2</span><span class="ref-card__ext">↗</span></div>
-      <div class="ref-card__desc">Site concept + showcasing interactive prototypes for developers.</div>
-      <div class="ref-card__tags"><span>Web concept</span><span>Interactive prototypes</span></div>
+      <div class="ref-card__head"><span class="ref-card__name">Verifly · Концепт 2</span><span class="ref-card__ext">↗</span></div>
+      <div class="ref-card__desc">Концепція сайту + інтерактивні прототипи для розробників.</div>
+      <div class="ref-card__tags"><span>Веб-концепція</span><span>Інтерактивні прототипи</span></div>
     </a>
 
     <a class="ref-card" href="https://chife-mod.github.io/verifly-web/concept-1/" target="_blank" rel="noopener">
-      <div class="ref-card__head"><span class="ref-card__name">Verifly · Concept 1</span><span class="ref-card__ext">↗</span></div>
-      <div class="ref-card__desc">Site concept + showcasing interactive prototypes for developers.</div>
-      <div class="ref-card__tags"><span>Web concept</span><span>Interactive prototypes</span></div>
+      <div class="ref-card__head"><span class="ref-card__name">Verifly · Концепт 1</span><span class="ref-card__ext">↗</span></div>
+      <div class="ref-card__desc">Концепція сайту + інтерактивні прототипи для розробників.</div>
+      <div class="ref-card__tags"><span>Веб-концепція</span><span>Інтерактивні прототипи</span></div>
     </a>
 
   </div>
@@ -380,40 +454,127 @@ a.ref-card:hover { border-color: rgba(159,186,205,0.3); background: rgba(255,255
 <script>
 /* ═══════════════════════════════════════════════════════════════
    SINGLE SOURCE OF TRUTH — edit this from the client brief.
-   Page = { name, sections:[ {name, desc?, min, max, tbc?, p2?, sep?} ],
+   Page = { name, tag?, work?, caption?, fix?,
+            sections:[ {name, desc?, min, max, tbc?, p2?, sep?} ],
             children?:[ { name, kind:"subpage"|"popup", ...page } ],
-            system?:true, p2?:true }
-   Flags: tbc = requires clarification · p2 = phase 2 (— in START col) ·
-          sep = separate work block. Hours are in HOURS (min/max).
-   ─────────────────────────────────────────────────────────────── */
-const CONFIG = { rate: 30, commentsMin: 0.10, commentsMax: 0.10, mgmtMin: 0.10, mgmtMax: 0.10, hoursPerDay: 5.3 };
+            excluded?, exclLabel?, exclSub? }
+   Flags: tbc = requires clarification · p2 = phase 2 · sep = separate block.
+   Hours are in HOURS (min/max). fix = фіксована ціна блоку (fix-вид).
 
-const SITEMAP = [
-  { name: "Лендинг", sections: [
+   КОНВЕНЦІЇ цього кошторису (хедери, ціна на колонці, ФОП, гривня,
+   версійність V1/V2, порядок рядків, мова) — див. docs/estimate-conventions.md.
+   Reusable-версія для всіх Tier-2 фікс-офферів — MOD Manager:
+   .agents/workflows/estimation-dashboard.md §11 (Orlyk pattern).
+   ─────────────────────────────────────────────────────────────── */
+const CONFIG = {
+  rate: 30, commentsMin: 0.10, commentsMax: 0.10, mgmtMin: 0.10, mgmtMax: 0.10, hoursPerDay: 5.3,
+  fop: 0.06,                 // ФОП — єдиний податок 3 гр. (5%) + військовий збір (1%)
+  uahRate: 44.9256,          // курс НБУ USD→UAH — оновити перед відправкою клієнту
+  uahDate: "12.06.2026",     // дата курсу НБУ
+};
+
+/* Те, що бачить клієнт у верхній полосі (rollup): односторінковий
+   лендинг, кількість екранів — за брифом. Не плутати з робочими
+   блоками кошторису (їх 6) та плитками-секціями (їх 16). */
+const PROJECT_META = { pages: 1, screens: 4 };
+
+/* ─── Design blocks — identical across versions (design scope is the
+       same; only the implementation block differs V1 → V2) ───────── */
+const DESIGN_BLOCKS = [
+  { name: "Концепція", tag: "Дизайн",
+    caption: `<strong>Етап 1.</strong> Погоджуємо візуальний напрям до старту дизайну секцій — 100% передоплата.`,
+    sections: [
       { name: "Веб-концепція (Hero)", desc: "Загальна візуальна концепція + перший екран (Hero).", min: 10, max: 12 },
+  ]},
+  { name: "Лендинг", tag: "Дизайн", sections: [
       { name: "Головне меню / Навігація", desc: "Лого, навігація, перемикач мови.", min: 1.5, max: 2.5 },
       { name: "Вступ / Огляд проєкту", desc: "Текст проєкту, вплив, лого спонсорів, відео.", min: 1.5, max: 2 },
       { name: "Конституція — Перегляд документа", desc: "Інтерактивний рідер: оригінал + сучасний текст, карусель.", min: 2, max: 4 },
       { name: "Історичний контекст / Відео", desc: "Портрет + відеоплеєр + мапа ЄС.", min: 1.5, max: 2.5 },
       { name: "Футер", desc: "Посилання, контакти, спонсори.", min: 1.5, max: 2.5 },
   ]},
-  { name: "Анімації / Інтерактив", work: true, tag: "Анімація", sections: [
+  { name: "Анімації", work: true, tag: "Моушн", sections: [
       { name: "Переходи, відео, карусель", desc: "Анімації появи, відео, інтерактив рідера — окремим блоком.", min: 3, max: 4 },
   ]},
-  { name: "Адаптив", work: true, tag: "Адаптив", sections: [
+  { name: "Адаптив", work: true, tag: "Мобайл", sections: [
       { name: "Планшет + Мобільний", desc: "Адаптація під планшет і мобільний (≈20–30% обсягу дизайну).", min: 5.5, max: 11 },
   ]},
-  { name: "Реалізація (Front + Back)", work: true, tag: "Розробка", sections: [
-      { name: "Front-end + Back-end", desc: "Верстка + інтеграція, інтерактивний рідер. ≈ $400–600.", min: 13.33, max: 20 },
-  ]},
 ];
+
+/* ─── Implementation block — the ONLY thing that differs by version ─ */
+
+/* V1 — full scope: front-end + back-end integration (admin / edits on
+        the developer side). Single line, ≈ $400–600. */
+const DEV_V1 = { name: "Реалізація (Front + Back)", work: true, tag: "Розробка",
+  caption: `<strong>Передаємо:</strong> верстка + бекенд-інтеграція, інтерактивний рідер. Правки тексту — на боці розробника.`,
+  sections: [
+  { name: "Front-end + Back-end", desc: "Верстка + інтеграція, інтерактивний рідер. ≈ $400–600.", min: 13.33, max: 20 },
+]};
+
+/* V2 — iteration 1: front-end ONLY (HTML/CSS), no admin/back-end.
+        Client wires it to their own site; text edits by the developer
+        on request. Implementation broken down by the hour (почасовка),
+        ≈ half of V1's dev block. */
+const DEV_V2 = { name: "Реалізація (HTML/CSS)", work: true, tag: "Front-end",
+  caption: `<strong>Передаємо клієнту:</strong> готова HTML/CSS-верстка з анімаціями та інтерактивом. Бекенд / адмінку / інтеграцію НАЗК підключає на своєму боці.`,
+  sections: [
+  { name: "Розмітка + базові стилі",            desc: "HTML-кістяк, токени, типографіка, сітка, шрифти.",                 min: 1,   max: 1.5 },
+  { name: "Hero + меню / навігація",            desc: "Перший екран, навігація, перемикач мови (без бекенду локалізації).", min: 1, max: 1.5 },
+  { name: "Вступ + Історичний контекст + Футер", desc: "Статичні секції: текст, лого спонсорів, відеоблок, футер.",       min: 1.5, max: 2 },
+  { name: "Рідер документа",                    desc: "Карусель, синхронне гортання ліво↔право, кнопка «Завантажити».",   min: 2,   max: 3.5 },
+  { name: "Інтеграція анімацій / відео",        desc: "Вшивання YouTube, скрол-ефекти появи, мікроанімації.",            min: 1,   max: 1.5 },
+]};
+
+/* ─── Аннотації статей — пропозиція НАЗК від 11.06, ВКЛЮЧЕНО у фікс ── */
+const OPT_ANNOT = { name: "Аннотації статей", work: true, tag: "Інтерактив",
+  caption: `<strong>Пропозиція НАЗК (11.06):</strong> підсвітка статей у перекладі + спливаюче вікно — як норма 1710 року відображена в чинній Конституції України. <strong>Включено у фікс.</strong> Тексти аннотацій та відповідність статтям — від НАЗК.`,
+  sections: [
+    { name: "Дизайн: підсвітка + поповер", desc: "Стиль підсвітки, вікно-поповер, анімація появи, мобільна шторка.", min: 1.5, max: 2 },
+    { name: "Front-end: механіка аннотацій", desc: "Поповер у рідері: позиціонування, тач, дані аннотацій (JSON).", min: 2, max: 3 },
+    { name: "Розмітка аннотацій (до ~30)", desc: "Маркування фрагментів у тексті перекладу за даними НАЗК.", min: 1, max: 2 },
+  ]};
+
+/* ─── Versions registry — board + estimate re-render from here ───── */
+const VERSIONS = {
+  v1: {
+    key: "V1", label: "Front + Back",
+    note: "Повний обсяг: дизайн + верстка + бекенд-інтеграція (адмінка / правки тексту на боці розробника). Базова оцінка з дзвінка 05.06.",
+    sitemap: [...DESIGN_BLOCKS, DEV_V1],
+  },
+  v2: {
+    key: "V2", label: "Фікс — фінальна пропозиція",
+    fixed: true,
+    note: "Фінальна пропозиція до договору: ціна кожного блоку зафіксована, менеджмент, правки та ФОП — однією строкою. Обсяг: front-end only (HTML/CSS) + аннотації статей.",
+    sitemap: [
+      { ...DESIGN_BLOCKS[0], fix: 350 },
+      { ...DESIGN_BLOCKS[1], fix: 350 },
+      { ...DESIGN_BLOCKS[2], fix: 110 },
+      { ...DESIGN_BLOCKS[3], fix: 250 },
+      { ...DEV_V2,           fix: 300 },
+      { ...OPT_ANNOT,        fix: 175 },
+    ],
+    final: {
+      usd: 1950,
+      terms: [
+        "Front-end only (HTML/CSS/JS)",
+        "Інтерактивні аннотації статей — включено (тексти та відповідності — від НАЗК, до ~30)",
+        "До 2 раундів правок",
+        "CMS / бекенд / хостинг / розгортання — не входять",
+        "Генерація відео не входить — сторонні рендер-сервіси оплачуються окремо",
+        "Додаткові роботи — $30/год",
+        "Оплата: 100% Етапу 1 «Концепція» наперед → 50% залишку перед Етапом 2 → фінальні 50% перед Етапом 4",
+        "Оплата в гривні за курсом НБУ на дату договору",
+      ],
+    },
+  },
+};
 
 /* ─── Helpers ────────────────────────────────────────────────── */
 const fmtH = (n) => (Number.isInteger(n) ? String(n) : n.toFixed(1));
 const fmtUSD = (n) => "$" + Math.round(n).toLocaleString("en-US");
+const fmtUSDRange = (a, b) => "$" + Math.round(a).toLocaleString("en-US") + "–" + Math.round(b).toLocaleString("en-US");
+const fmtUAH = (n) => Math.round(n).toLocaleString("uk-UA").replace(/ /g, " ") + " ₴";
 const sumSecs = (secs) => secs.reduce((a, s) => [a[0] + s.min, a[1] + s.max], [0, 0]);
-
-let grandMin = 0, grandMax = 0, sectionCount = 0, pageCount = 0;
 
 function badges(s) {
   let h = "";
@@ -434,18 +595,22 @@ function tilesHTML(sections) {
     </div>`).join("");
 }
 
-const KIND_LABEL = { subpage: "Subpage", popup: "Pop-up", system: "System", work: "Scope" };
+const KIND_LABEL = { subpage: "Підсторінка", popup: "Спливаюче", system: "Система", work: "Обсяг" };
 
-function nodeHTML({ num, kind, tag, name, sections, cls, p2, excluded }) {
+function nodeHTML({ num, kind, tag, name, sections, cls, p2, excluded, exclLabel, exclSub, caption, fix }, acc) {
   const [mn, mx] = sumSecs(sections);
-  if (!excluded) { grandMin += mn; grandMax += mx; sectionCount += sections.length; }
+  if (!excluded) {
+    acc.gMin += mn; acc.gMax += mx; acc.secs += sections.length;
+    acc.blocks.push({ name, mn, mx, fix });
+  }
   const badges = [];
-  if (kind) badges.push(`<span class="node__badge node__badge--${kind}">${tag || KIND_LABEL[kind] || kind}</span>`);
-  if (p2)   badges.push(`<span class="node__badge node__badge--p2">Phase 2</span>`);
-  if (excluded) badges.push(`<span class="node__badge node__badge--excl">Quoted after audit</span>`);
+  if (kind || tag) badges.push(`<span class="node__badge node__badge--${kind || "tag"}">${tag || KIND_LABEL[kind] || kind}</span>`);
+  if (p2)   badges.push(`<span class="node__badge node__badge--p2">Фаза 2</span>`);
+  if (excluded) badges.push(`<span class="node__badge node__badge--excl">${exclLabel || "Оцінка після аудиту"}</span>`);
+  const price = fix != null ? fmtUSD(fix) : fmtUSDRange(mn * CONFIG.rate, mx * CONFIG.rate);
   const sub = excluded
-    ? `<span class="node__sub node__sub--excl">${fmtH(mn)}–${fmtH(mx)}h · excl.</span>`
-    : `<span class="node__sub">${fmtH(mn)}–${fmtH(mx)}h</span>`;
+    ? `<span class="node__sub-wrap"><span class="node__sub node__sub--excl">${fmtH(mn)}–${fmtH(mx)}h · ${exclSub || "excl."}</span><span class="node__price node__price--excl">${price}</span></span>`
+    : `<span class="node__sub-wrap"><span class="node__sub">${fmtH(mn)}–${fmtH(mx)}h</span><span class="node__price">${price}</span></span>`;
   return `
     <div class="node ${cls || ""}${excluded ? " is-excluded" : ""}">
       <div class="node__head">
@@ -456,47 +621,150 @@ function nodeHTML({ num, kind, tag, name, sections, cls, p2, excluded }) {
         </div>
         ${badges.length ? `<div class="node__badges">${badges.join("")}</div>` : ""}
       </div>
+      ${caption ? `<div class="node__caption">${caption}</div>` : ""}
       <div class="node__sections">${tilesHTML(sections)}</div>
     </div>`;
 }
 
-/* ─── Pre-pass: fill computed sections (Adaptive = pct of all else) ─ */
-let baseMin = 0, baseMax = 0;
-SITEMAP.forEach((p) => {
-  if (p.excluded) return;   // excluded columns don't feed the estimate or the 30% adaptive base
-  [...p.sections, ...((p.children || []).flatMap((c) => c.sections))]
-    .forEach((s) => { if (!s.computed) { baseMin += s.min; baseMax += s.max; } });
-});
-SITEMAP.forEach((p) => {
-  [...p.sections, ...((p.children || []).flatMap((c) => c.sections))]
-    .forEach((s) => { if (s.computed) { s.min = Math.round(baseMin * s.pctMin * 2) / 2; s.max = Math.round(baseMax * s.pctMax * 2) / 2; } });
-});
-
-/* ─── Render board ───────────────────────────────────────────── */
+/* ─── Board reference — re-rendered on version switch ────────── */
 const board = document.getElementById("board");
-let pageIndex = 0;
-SITEMAP.forEach((page) => {
-  pageCount += 1;
-  let nodeArgs;
-  if (page.work) {
-    nodeArgs = { kind: "work", tag: page.tag, name: page.name, sections: page.sections, cls: "is-work", p2: page.p2 };
-  } else if (page.system) {
-    nodeArgs = { kind: "system", name: page.name, sections: page.sections, cls: "is-system", p2: page.p2 };
+const pctLabel = (a, b) => (a === b ? `${a * 100}%` : `${a * 100}–${b * 100}%`);
+
+/* ─── Money + days from an accumulator (gMin/gMax in hours) ───── */
+function money(acc) {
+  const subMin = acc.gMin * CONFIG.rate, subMax = acc.gMax * CONFIG.rate;
+  const commMin = subMin * CONFIG.commentsMin, commMax = subMax * CONFIG.commentsMax;
+  const mgmtMin = subMin * CONFIG.mgmtMin,     mgmtMax = subMax * CONFIG.mgmtMax;
+  const workMin = subMin + commMin + mgmtMin,  workMax = subMax + commMax + mgmtMax;
+  const fopMin  = workMin * CONFIG.fop,        fopMax  = workMax * CONFIG.fop;
+  const totMin  = workMin + fopMin,            totMax  = workMax + fopMax;   // final, USD (з ФОП)
+  const uahMin  = totMin * CONFIG.uahRate,     uahMax  = totMax * CONFIG.uahRate;
+  const daysMin = Math.ceil(acc.gMin / CONFIG.hoursPerDay);
+  const daysMax = Math.ceil(acc.gMax / CONFIG.hoursPerDay);
+  return { subMin, subMax, commMin, commMax, mgmtMin, mgmtMax, workMin, workMax, fopMin, fopMax, totMin, totMax, uahMin, uahMax, daysMin, daysMax };
+}
+
+/* Pure hours/section/page tally for a sitemap (no DOM) — feeds tabs. */
+function computeTotals(sitemap) {
+  const acc = { gMin: 0, gMax: 0, secs: 0, pages: 0 };
+  sitemap.forEach((p) => {
+    acc.pages += 1;
+    if (!p.excluded) { const [a, b] = sumSecs(p.sections); acc.gMin += a; acc.gMax += b; acc.secs += p.sections.length; }
+    (p.children || []).forEach((c) => {
+      acc.pages += 1;
+      if (!c.excluded) { const [a, b] = sumSecs(c.sections); acc.gMin += a; acc.gMax += b; acc.secs += c.sections.length; }
+    });
+  });
+  return acc;
+}
+
+/* ─── Render one version: board + rollup + breakdown ─────────── */
+function renderVersion(vid) {
+  const V = VERSIONS[vid];
+  const acc = { gMin: 0, gMax: 0, secs: 0, pages: 0, blocks: [] };
+
+  board.innerHTML = "";
+  let pageIndex = 0;
+  V.sitemap.forEach((page) => {
+    acc.pages += 1;
+    let nodeArgs;
+    if (page.work) {
+      nodeArgs = { kind: "work", tag: page.tag, name: page.name, sections: page.sections, cls: "is-work", p2: page.p2, excluded: page.excluded, exclLabel: page.exclLabel, exclSub: page.exclSub, caption: page.caption, fix: page.fix };
+    } else if (page.system) {
+      nodeArgs = { kind: "system", name: page.name, sections: page.sections, cls: "is-system", p2: page.p2, excluded: page.excluded, exclLabel: page.exclLabel, exclSub: page.exclSub, caption: page.caption, fix: page.fix };
+    } else {
+      pageIndex += 1;
+      nodeArgs = { num: String(pageIndex).padStart(2, "0"), name: page.name, tag: page.tag, sections: page.sections, p2: page.p2, excluded: page.excluded, exclLabel: page.exclLabel, exclSub: page.exclSub, caption: page.caption, fix: page.fix };
+    }
+
+    let col = `<div class="column">`;
+    col += nodeHTML(nodeArgs, acc);
+    (page.children || []).forEach((child) => {
+      acc.pages += 1;
+      col += `<div class="connector${child.kind === "popup" ? " connector--popup" : ""}"></div>`;
+      col += nodeHTML({ kind: child.kind, name: child.name, sections: child.sections, cls: "is-child", p2: child.p2, caption: child.caption }, acc);
+    });
+    col += `</div>`;
+    board.insertAdjacentHTML("beforeend", col);
+  });
+
+  const t = money(acc);
+  const isFix = !!V.fixed;
+
+  document.getElementById("estTitle").textContent = `Кошторис — ${V.key} · ${V.label}`;
+  document.getElementById("vnote").textContent = V.note;
+
+  const moneyStats = isFix
+    ? `
+    <div class="stat stat--accent"><div class="stat__label">Разом, $ (фікс)</div><div class="stat__value">${fmtUSD(V.final.usd)}</div></div>
+    <div class="stat stat--accent stat--uah"><div class="stat__label">Разом, ₴</div><div class="stat__value">${fmtUAH(V.final.usd * CONFIG.uahRate)}</div></div>`
+    : `
+    <div class="stat stat--accent"><div class="stat__label">Разом, $ (з ФОП)</div><div class="stat__value">${fmtUSD(t.totMin)}–<small>${fmtUSD(t.totMax)}</small></div></div>
+    <div class="stat stat--accent stat--uah"><div class="stat__label">Разом, ₴</div><div class="stat__value">${Math.round(t.uahMin).toLocaleString("uk-UA")}–<small>${fmtUAH(t.uahMax)}</small></div></div>`;
+
+  document.getElementById("rollup").innerHTML = `
+    <div class="stat"><div class="stat__label">Сторінок</div><div class="stat__value">${PROJECT_META.pages}</div></div>
+    <div class="stat"><div class="stat__label">Секцій</div><div class="stat__value">${PROJECT_META.screens}</div></div>
+    <div class="stat"><div class="stat__label">Години</div><div class="stat__value">${fmtH(acc.gMin)}–${fmtH(acc.gMax)}</div></div>
+    <div class="stat"><div class="stat__label">Робочих днів</div><div class="stat__value">${t.daysMin}–${t.daysMax}</div></div>${moneyStats}`;
+
+  document.querySelector(".breakdown__table thead").innerHTML = isFix
+    ? `<tr><th>Позиція</th><th>Сума</th></tr>`
+    : `<tr><th>Позиція</th><th>Мін</th><th>Макс</th></tr>`;
+
+  const blockRows = acc.blocks.map((b) => isFix
+    ? `
+    <tr><td>${b.name} (${fmtH(b.mn)}–${fmtH(b.mx)} год)</td><td>${fmtUSD(b.fix)}</td></tr>`
+    : `
+    <tr><td>${b.name} (${fmtH(b.mn)}–${fmtH(b.mx)} год)</td><td>${fmtUSD(b.mn * CONFIG.rate)}</td><td>${fmtUSD(b.mx * CONFIG.rate)}</td></tr>`).join("");
+
+  if (isFix) {
+    const subFix  = acc.blocks.reduce((s, b) => s + b.fix, 0);
+    const commFix = Math.round(subFix * CONFIG.commentsMin);
+    const mgmtFix = Math.round(subFix * CONFIG.mgmtMin);
+    const fopFix  = Math.round((subFix + commFix + mgmtFix) * CONFIG.fop);
+    const adj     = V.final.usd - (subFix + commFix + mgmtFix + fopFix);
+    const adjRow  = adj === 0 ? "" : `
+      <tr><td>Комерційне округлення</td><td>${adj < 0 ? "−" : "+"}${fmtUSD(Math.abs(adj))}</td></tr>`;
+    document.getElementById("breakdownBody").innerHTML = `
+      ${blockRows}
+      <tr class="row-sub"><td>Субтотал — робота (${fmtH(acc.gMin)}–${fmtH(acc.gMax)} год)</td><td>${fmtUSD(subFix)}</td></tr>
+      <tr><td>Коментарі та незаплановані роботи (${pctLabel(CONFIG.commentsMin, CONFIG.commentsMax)})</td><td>${fmtUSD(commFix)}</td></tr>
+      <tr><td>Менеджмент та комунікація (${pctLabel(CONFIG.mgmtMin, CONFIG.mgmtMax)})</td><td>${fmtUSD(mgmtFix)}</td></tr>
+      <tr><td>ФОП — єдиний податок (${Math.round(CONFIG.fop * 100)}%)</td><td>${fmtUSD(fopFix)}</td></tr>${adjRow}
+      <tr class="is-total"><td>Разом, $ (фікс)</td><td>${fmtUSD(V.final.usd)}</td></tr>
+      <tr class="rate-row"><td>Курс НБУ · ${CONFIG.uahDate}</td><td>${CONFIG.uahRate.toFixed(2)} ₴/$</td></tr>
+      <tr class="is-total is-total--uah"><td>Разом, ₴</td><td>${fmtUAH(V.final.usd * CONFIG.uahRate)}</td></tr>`;
   } else {
-    pageIndex += 1;
-    nodeArgs = { num: String(pageIndex).padStart(2, "0"), name: page.name, sections: page.sections, p2: page.p2, excluded: page.excluded };
+    document.getElementById("breakdownBody").innerHTML = `
+    ${blockRows}
+    <tr class="row-sub"><td>Субтотал — робота (${fmtH(acc.gMin)}–${fmtH(acc.gMax)} год × $${CONFIG.rate}/год)</td><td>${fmtUSD(t.subMin)}</td><td>${fmtUSD(t.subMax)}</td></tr>
+    <tr><td>Коментарі та незаплановані роботи (${pctLabel(CONFIG.commentsMin, CONFIG.commentsMax)})</td><td>${fmtUSD(t.commMin)}</td><td>${fmtUSD(t.commMax)}</td></tr>
+    <tr><td>Менеджмент та комунікація (${pctLabel(CONFIG.mgmtMin, CONFIG.mgmtMax)})</td><td>${fmtUSD(t.mgmtMin)}</td><td>${fmtUSD(t.mgmtMax)}</td></tr>
+    <tr><td>ФОП — єдиний податок (${Math.round(CONFIG.fop * 100)}%)</td><td>${fmtUSD(t.fopMin)}</td><td>${fmtUSD(t.fopMax)}</td></tr>
+    <tr class="is-total"><td>Разом, $</td><td><small class="mm">мін</small> ${fmtUSD(t.totMin)}</td><td><small class="mm">макс</small> ${fmtUSD(t.totMax)}</td></tr>
+    <tr class="rate-row"><td>Курс НБУ · ${CONFIG.uahDate}</td><td colspan="2">${CONFIG.uahRate.toFixed(2)} ₴/$</td></tr>
+    <tr class="is-total is-total--uah"><td>Разом, ₴</td><td><small class="mm">мін</small> ${fmtUAH(t.uahMin)}</td><td><small class="mm">макс</small> ${fmtUAH(t.uahMax)}</td></tr>`;
   }
 
-  let col = `<div class="column">`;
-  col += nodeHTML(nodeArgs);
-  (page.children || []).forEach((child) => {
-    pageCount += 1;
-    col += `<div class="connector${child.kind === "popup" ? " connector--popup" : ""}"></div>`;
-    col += nodeHTML({ kind: child.kind, name: child.name, sections: child.sections, cls: "is-child", p2: child.p2 });
-  });
-  col += `</div>`;
-  board.insertAdjacentHTML("beforeend", col);
-});
+  const fb = document.getElementById("finalBlock");
+  if (V.final) {
+    fb.hidden = false;
+    fb.innerHTML = `
+      <div class="final__main">
+        <span class="final__label">Фінальна ціна (фікс)</span>
+        <div class="final__price">${fmtUSD(V.final.usd)}</div>
+        <div class="final__uah">≈ ${fmtUAH(V.final.usd * CONFIG.uahRate)} · курс НБУ ${CONFIG.uahRate.toFixed(2)} (${CONFIG.uahDate}) — фіксується на дату договору</div>
+      </div>
+      <ul class="final__terms">${V.final.terms.map((t) => `<li>${t}</li>`).join("")}</ul>
+      ${V.final.addon ? `<div class="final__addon">${V.final.addon}</div>` : ""}`;
+  } else {
+    fb.hidden = true;
+    fb.innerHTML = "";
+  }
+
+  document.querySelectorAll(".vtab").forEach((b) => b.classList.toggle("is-active", b.dataset.v === vid));
+}
 
 /* ─── Drag-to-pan horizontal scroll (grab & drag the board) ──── */
 (() => {
@@ -523,27 +791,33 @@ SITEMAP.forEach((page) => {
   board.addEventListener("click", (e) => { if (moved > 6) { e.preventDefault(); e.stopPropagation(); } }, true);
 })();
 
-/* ─── Totals ─────────────────────────────────────────────────── */
-const subMin = grandMin * CONFIG.rate, subMax = grandMax * CONFIG.rate;
-const commMin = subMin * CONFIG.commentsMin, commMax = subMax * CONFIG.commentsMax;
-const mgmtMin = subMin * CONFIG.mgmtMin,     mgmtMax = subMax * CONFIG.mgmtMax;
-const totMin = subMin + commMin + mgmtMin,   totMax = subMax + commMax + mgmtMax;
-// working days @ ~5.3 delivered hours/day
-const daysMin = Math.ceil(grandMin / CONFIG.hoursPerDay);
-const daysMax = Math.ceil(grandMax / CONFIG.hoursPerDay);
+/* ─── Version tabs (V1 / V2) — segmented control + #hash deep-link ─ */
+const vtabs = document.getElementById("vtabs");
+function tabSummary(vid) {
+  const V = VERSIONS[vid];
+  const t = money(computeTotals(V.sitemap));
+  if (V.final) return `Фікс ${fmtUSD(V.final.usd)} · ${t.daysMin}–${t.daysMax} дн`;
+  return `${fmtUSD(t.totMin)}–${fmtUSD(t.totMax)} · ${t.daysMin}–${t.daysMax} дн`;
+}
+Object.keys(VERSIONS).forEach((vid) => {
+  const V = VERSIONS[vid];
+  const b = document.createElement("button");
+  b.type = "button"; b.className = "vtab"; b.dataset.v = vid;
+  b.setAttribute("role", "tab");
+  b.innerHTML =
+    `<span class="vtab__k">${V.key}</span>` +
+    `<span class="vtab__l">${V.label}</span>` +
+    `<span class="vtab__s">${tabSummary(vid)}</span>`;
+  b.addEventListener("click", () => { location.hash = vid; renderVersion(vid); });
+  vtabs.appendChild(b);
+});
 
-document.getElementById("rollup").innerHTML = `
-  <div class="stat"><div class="stat__label">Pages / nodes</div><div class="stat__value">${pageCount}</div></div>
-  <div class="stat"><div class="stat__label">Sections</div><div class="stat__value">${sectionCount}</div></div>
-  <div class="stat"><div class="stat__label">Hours</div><div class="stat__value">${fmtH(grandMin)}–${fmtH(grandMax)}</div></div>
-  <div class="stat"><div class="stat__label">Working days</div><div class="stat__value">${daysMin}–${daysMax}</div></div>`;
-
-const pctLabel = (a, b) => (a === b ? `${a * 100}%` : `${a * 100}–${b * 100}%`);
-document.getElementById("breakdownBody").innerHTML = `
-  <tr><td>Subtotal (${fmtH(grandMin)}–${fmtH(grandMax)} h)</td><td>${fmtUSD(subMin)}</td><td>${fmtUSD(subMax)}</td></tr>
-  <tr><td>Comments &amp; Unplanned Work (${pctLabel(CONFIG.commentsMin, CONFIG.commentsMax)})</td><td>${fmtUSD(commMin)}</td><td>${fmtUSD(commMax)}</td></tr>
-  <tr><td>Management &amp; communication (${pctLabel(CONFIG.mgmtMin, CONFIG.mgmtMax)})</td><td>${fmtUSD(mgmtMin)}</td><td>${fmtUSD(mgmtMax)}</td></tr>
-  <tr class="is-total"><td>Total estimate</td><td><small class="mm">min</small> ${fmtUSD(totMin)}</td><td><small class="mm">max</small> ${fmtUSD(totMax)}</td></tr>`;
+const hashV = location.hash.replace("#", "");
+renderVersion(hashV in VERSIONS ? hashV : "v2");
+window.addEventListener("hashchange", () => {
+  const v = location.hash.replace("#", "");
+  if (v in VERSIONS) renderVersion(v);
+});
 </script>
 
 <script defer src="../shared/service-menu.js"></script>
